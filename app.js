@@ -25,7 +25,6 @@ let randomGenerator = (nums) => {
 //gets random question and answer for each topic IN AN ARRAY
 
 const getQandA = (quizes) => {
-  //topic.topics.geography returns the questions
   //random question from the list
   randNum = randomGenerator(quizes.length);
 
@@ -43,34 +42,38 @@ const randTopic = (quizes) => {
   let topic = "";
 
   let randomTopicNum = randomGenerator(quizTopics.length);
-
+  topicName = quizTopics[randomTopicNum];
   topic = quizes.topics[quizTopics[randomTopicNum]];
 
-  //   console.log(quizTopics[randomTopicNum]);
-  return topic;
+  return [topic, topicName];
 };
 
 // creating an array of quiz
 const createRandQuiz = (quizes) => {
   questionArray = [];
+  //all questions from one topic
   let oneTopic = "";
+  // one question from the selected topic
   let oneQandA = "";
-  for (let index = 0; index < 10; index++) {
-    //get 1 random topic
-    oneTopic = randTopic(quizes);
+  for (let index = 0; index < 1; index++) {
+    //get 1 random topic's q and a and its name
+    const [oneTopic, topicName] = randTopic(quizes);
+
     oneQandA = getQandA(oneTopic);
     if (questionArray.includes(oneQandA)) {
       while (questionArray.includes(oneQandA)) {
         oneQandA = getQandA(oneTopic);
       }
     }
-    console.log(oneQandA);
+    oneQandA = Object.assign({ topic: topicName }, oneQandA);
+
     questionArray.push(oneQandA);
   }
   //questionArray returns the array of questions
   //questionArray[1] returnst the second element of the array
   //questionArray[1].answers returns the object of all the answers
   //questionsArray[1].answers[3] gets the 4th element in the object of answers
+
   return questionArray;
 };
 
