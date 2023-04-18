@@ -1,6 +1,6 @@
 {
-  "music": {
-    "questions": [
+  "topics" : {
+    "music": [
       {
         "question": "Who is known as the 'King of Pop'?",
         "answers": [
@@ -46,10 +46,8 @@
           {"answer": "Taylor Swift", "is_correct": false}
         ]
       }
-    ]
-  },
-  "geography": {
-    "questions": [
+    ],
+    "geography": [
       {
         "question": "What is the capital city of Australia?",
         "answers": [
@@ -95,10 +93,8 @@
           {"answer": "Caracas", "is_correct": false}
         ]
       }
-    ]
-  },
-  "literature": {
-    "questions": [
+    ],
+    "literature": [
       {
         "question": "Who wrote the Harry Potter series?",
         "answers": [
@@ -144,10 +140,8 @@
           {"answer": "Les Miserables", "is_correct": true}
         ]
       }
-    ]
-  },
-  "history": {
-    "questions": [
+    ],
+    "history": [
       {
         "question": "What year did World War II end?",
         "answers": [
