@@ -21,6 +21,10 @@ app.get('/:topic', (req, res) => {
 
   const questions = quizes.topics[topic]
 
+  if (!questions) {
+    res.status(404).send({ error: `The topic ${topic} is invalid` })
+  }
+
   res.send(questions)
 })
 
