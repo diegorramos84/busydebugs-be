@@ -6,8 +6,7 @@
             "geography": 4,
             "literature": 3,
             "history": 5
-        },
-        "id": 1
+        }
     },
     {
         "username": "JaneDoe",
@@ -16,8 +15,7 @@
             "geography": 5,
             "literature": 5,
             "history": 5
-        },
-        "id": 2
+        }
     },
     {
         "username": "SmithSmith",
@@ -26,7 +24,6 @@
             "geography": 2,
             "literature": 5,
             "history": 1
-        },
-        "id": 3
+        }
     }
 ]
