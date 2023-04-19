@@ -65,34 +65,30 @@ app.patch('/users/:username', (req, res) => {
     const username = req.params.username;
     try {
       const user = userString.find(user => user.username.toLowerCase() === username.toLowerCase());
-  
+
       if (!user) {
         return res.status(404).send({ error: "User not found" });
       }
-  
+
       const { music, geography, literature, history } = req.body.score;
       user.score = { music, geography, literature, history };
-  
+
       fs.writeFileSync('users.json', JSON.stringify(userString, null, 2));
       res.status(200).send(user);
     } catch (err) {
       res.status(500).send({ error: err.message });
     }
   });
-  
-  
 
-app.get('/:topic', (req, res) => {
 
-    const topic = req.params.topic.toLowerCase()
+
+app.get('/quiz/:topic', (req, res) => {
 
   const topic =  req.params.topic.toLowerCase()
-  console.log(topic)
 
   if (topic === 'random') {
-    res.send(createRandQuiz(quizes))
+    return res.send(createRandQuiz(quizes))
   }
-
 
     const questions = quizes.topics[topic]
 
@@ -100,13 +96,9 @@ app.get('/:topic', (req, res) => {
         res.status(404).send({ error: `The topic ${topic} is invalid` })
     }
 
-    res.send(questions)
+    return res.send(questions)
 })
 
-
-app.get("/random", (req, res) => {
-    res.send(createRandQuiz(quizes));
-});
 
 //return random number from 0 to numbs
 let randomGenerator = (nums) => {
