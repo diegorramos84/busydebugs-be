@@ -63,7 +63,6 @@ app.post('/users', (req, res) => {
 
 app.patch('/users/:username', (req, res) => {
     const username = req.params.username;
-  
     try {
       const user = userString.find(user => user.username.toLowerCase() === username.toLowerCase());
   
@@ -84,7 +83,16 @@ app.patch('/users/:username', (req, res) => {
   
 
 app.get('/:topic', (req, res) => {
+
     const topic = req.params.topic.toLowerCase()
+
+  const topic =  req.params.topic.toLowerCase()
+  console.log(topic)
+
+  if (topic === 'random') {
+    res.send(createRandQuiz(quizes))
+  }
+
 
     const questions = quizes.topics[topic]
 
@@ -94,6 +102,7 @@ app.get('/:topic', (req, res) => {
 
     res.send(questions)
 })
+
 
 app.get("/random", (req, res) => {
     res.send(createRandQuiz(quizes));
