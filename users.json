@@ -1,29 +1,47 @@
 [
-    {
-        "username": "JohnDoe",
-        "score": {
-            "music": 2,
-            "geography": 4,
-            "literature": 3,
-            "history": 5
-        }
-    },
-    {
-        "username": "JaneDoe",
-        "score": {
-            "music": 3,
-            "geography": 5,
-            "literature": 5,
-            "history": 5
-        }
-    },
-    {
-        "username": "SmithSmith",
-        "score": {
-            "music": 3,
-            "geography": 2,
-            "literature": 5,
-            "history": 1
-        }
+  {
+    "username": "JohnDoe",
+    "score": {
+      "music": 1,
+      "geography": 3,
+      "literature": 3,
+      "history": 3
     }
+  },
+  {
+    "username": "JaneDoe",
+    "score": {
+      "music": 3,
+      "geography": 5,
+      "literature": 5,
+      "history": 5
+    }
+  },
+  {
+    "username": "SmithSmith",
+    "score": {
+      "music": 3,
+      "geography": 2,
+      "literature": 5,
+      "history": 1
+    }
+  },
+  {
+    "username": "JohnDoe2",
+    "score": {
+      "music": 1,
+      "geography": 3,
+      "literature": 3,
+      "history": 3
+    }
+  },
+  {
+    "username": "JohnDoe3",
+    "score": {
+      "music": 1,
+      "geography": 3,
+      "literature": 1,
+      "history": 1
+    }
+  }
 ]
