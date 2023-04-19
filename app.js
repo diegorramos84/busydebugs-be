@@ -3,8 +3,6 @@ const cors = require("cors");
 const logger = require("./logger");
 const quizes = require("./quiz.json");
 
-let quizes = require('./quiz.json')
-
 
 const users = require('./users.json');
 
