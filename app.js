@@ -61,28 +61,6 @@ app.post('/users', (req, res) => {
 
 });
 
-// app.patch('/users/:username', (req, res) => {
-//     const username = req.params.username;
-//     let user = users.findIndex(user => user.username.toLowerCase() === username.toLowerCase());
-//     const { music, geography, literature, history } = req.body.score;
-//     console.log(music, geography, literature, history);
-
-
-//     if (user === -1) {
-//         return res.status(404).send({ error: "User not found" });
-//     }
-
-//     try {
-//         users[user].score.music = music;
-//         users[user].score.geography = geography;
-//         users[user].score.literature = literature;
-//         users[user].score.history = history;
-//     } catch (error) {
-//         res.status(400).send(error.message);
-//     }
-//     res.status(200).send(users[user]);
-// });
-
 app.patch('/users/:username', (req, res) => {
     const username = req.params.username;
   
