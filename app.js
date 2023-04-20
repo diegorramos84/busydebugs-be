@@ -3,6 +3,7 @@ const cors = require("cors");
 const logger = require("./logger");
 const quizes = require("./quiz.json");
 const fs = require("fs");
+const { readFileSync, writeFileSync } = require('fs')
 
 const users = require(__dirname + "/users.json");
 
@@ -12,11 +13,11 @@ app.use(express.json());
 
 app.use(logger);
 
-const userData = fs.readFileSync(__dirname + "/users.json");
-
+// const userData = fs.readFileSync(__dirname + "/users.json");
+const userData = readFileSync(__dirname + "/users.json");
 const userString = JSON.parse(userData);
 
-app.post("/users", (req, res) => {
+app.post("/users", async (req, res) => {
     const username = req.body.username;
 
     if (!username) {
@@ -32,16 +33,24 @@ app.post("/users", (req, res) => {
             },
         };
 
-        userString.push(newUser);
-        fs.writeFile(__dirname + "/users.json", JSON.stringify(userString, null, 2), (err) => {
-          if (err) {
-            console.log(err)
-            return res.sendStatus(500)
-          } else {
-            console.log(newUser)
-            return res.status(201).send(newUser);
-          }
-        });
+        try {
+          userString.push(newUser);
+          const newUserList = JSON.stringify(userString, null, 2)
+          writeFileSync(__dirname + "/users.json", newUserList)
+          return res.status(201).send(newUser);
+        } catch (error) {
+          console.log('An error has occured', error)
+        }
+
+        // fs.writeFile(__dirname + "/users.json", newUserList, (err) => {
+        //   if (err) {
+        //     console.log(err)
+        //     return res.sendStatus(500)
+        //   } else {
+        //     console.log(newUser)
+        //     return res.status(201).send(newUser);
+        //   }
+        // });
       }
 });
 
