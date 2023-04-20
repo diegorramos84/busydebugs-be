@@ -32,7 +32,7 @@ app.post("/users", (req, res) => {
         };
 
         userString.push(newUser);
-        fs.writeFileSync("./users.json", JSON.stringify(userString, null, 2));
+        fs.writeFile("./users.json", JSON.stringify(userString, null, 2));
         res.status(201).send(newUser);
     }
 
