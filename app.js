@@ -5,18 +5,12 @@ const quizes = require("./quiz.json");
 const fs = require("fs");
 const { readFileSync, writeFileSync } = require('fs')
 
-// const users = require(__dirname + "/users.json");
-
-// let users = readFileSync(__dirname + "/users.json")
-// console.log(JSON.parse(users))
-
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use(logger);
 
-// const userData = fs.readFileSync(__dirname + "/users.json");
 let userData = readFileSync(__dirname + "/users.json");
 const userString = JSON.parse(userData);
 
@@ -38,9 +32,7 @@ app.post("/users", async (req, res) => {
 
         try {
           userString.push(newUser);
-          console.log(userString)
           const newUserList = JSON.stringify(userString, null, 2)
-          console.log(newUserList)
           writeFileSync(__dirname + "/users.json", newUserList)
           let userData = readFileSync(__dirname + "/users.json")
           console.log(JSON.parse(userData))
@@ -48,16 +40,6 @@ app.post("/users", async (req, res) => {
         } catch (error) {
           console.log('An error has occured', error)
         }
-
-        // fs.writeFile(__dirname + "/users.json", newUserList, (err) => {
-        //   if (err) {
-        //     console.log(err)
-        //     return res.sendStatus(500)
-        //   } else {
-        //     console.log(newUser)
-        //     return res.status(201).send(newUser);
-        //   }
-        // });
       }
 });
 
