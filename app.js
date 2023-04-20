@@ -4,7 +4,7 @@ const logger = require("./logger");
 const quizes = require("./quiz.json");
 const fs = require("fs");
 
-const users = require("./users.json");
+const users = require(__dirname + "/users.json");
 
 const app = express();
 app.use(cors());
