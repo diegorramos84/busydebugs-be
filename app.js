@@ -35,6 +35,7 @@ app.post("/users", async (req, res) => {
 
         try {
           userString.push(newUser);
+          console.log(userString)
           const newUserList = JSON.stringify(userString, null, 2)
           writeFileSync(__dirname + "/users.json", newUserList)
           return res.status(201).send(newUser);
