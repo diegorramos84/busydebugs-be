@@ -15,6 +15,17 @@ app.use(logger);
 const userData = fs.readFileSync("users.json");
 const userString = JSON.parse(userData);
 
+fs.chmod("users.json", 0o775, (error) => {
+    // in-case of any errors
+    if (error) {
+      console.log(error);
+      return;
+    }
+  
+    // do other stuff
+    console.log("Permissions are changed for the file!");
+  });
+
 app.get("/", (req, res) => {
   res.send("Topic availables are: Music, Geography, History and Literature");
 });
@@ -52,7 +63,7 @@ app.post("/users", (req, res) => {
     };
 
     userString.push(newUser);
-    fs.writeFileSync("./users.json", JSON.stringify(userString, null, 2));
+    fs.writeFileSync("/users.json", JSON.stringify(userString, null, 2));
     res.status(201).send(newUser);
   }
 });
@@ -71,7 +82,7 @@ app.patch("/users/:username", (req, res) => {
     const { music, geography, literature, history } = req.body.score;
     user.score = { music, geography, literature, history };
 
-    fs.writeFileSync("./users.json", JSON.stringify(userString, null, 2));
+    fs.writeFileSync("/users.json", JSON.stringify(userString, null, 2));
     res.status(200).send(user);
   } catch (err) {
     res.status(500).send({ error: err.message });
