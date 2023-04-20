@@ -7,6 +7,8 @@ const { readFileSync, writeFileSync } = require('fs')
 
 // const users = require(__dirname + "/users.json");
 
+let users = readFileSync(__dirname + "/users.json")
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -14,7 +16,7 @@ app.use(express.json());
 app.use(logger);
 
 // const userData = fs.readFileSync(__dirname + "/users.json");
-const userData = readFileSync(__dirname + "/users.json");
+let userData = readFileSync(__dirname + "/users.json");
 const userString = JSON.parse(userData);
 
 app.post("/users", async (req, res) => {
@@ -61,8 +63,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
-    const userData = readFileSync(__dirname + "/users.json");
-    res.send(userData);
+    res.send(JSON.parse(users));
 });
 
 app.get("/users/:username", (req, res) => {
