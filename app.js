@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use(logger);
 
-const userData = fs.readFileSync("users.json");
+const userData = fs.readFileSync(__dirname + "/users.json");
 
 const userString = JSON.parse(userData);
 
@@ -20,7 +20,7 @@ app.post("/users", (req, res) => {
     const username = req.body.username;
 
     if (!username) {
-        res.status(400).send({ error: "Username is required!" });
+         return res.status(400).send({ error: "Username is required!" });
     } else {
         const newUser = {
             username: username,
@@ -36,12 +36,13 @@ app.post("/users", (req, res) => {
         fs.writeFile(__dirname + "/users.json", JSON.stringify(userString, null, 2), (err) => {
           if (err) {
             console.log(err)
-            res.sendStatus(500)
+            return res.sendStatus(500)
           } else {
-            res.status(201).send(newUser);
+            console.log(newUser)
+            return res.status(201).send(newUser);
           }
         });
-    }
+      }
 });
 
 app.get("/", (req, res) => {
