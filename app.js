@@ -41,7 +41,6 @@ app.post("/users", (req, res) => {
           }
         });
     }
-
 });
 
 app.get("/", (req, res) => {
