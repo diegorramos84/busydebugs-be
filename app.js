@@ -7,7 +7,8 @@ const { readFileSync, writeFileSync } = require('fs')
 
 // const users = require(__dirname + "/users.json");
 
-let users = readFileSync(__dirname + "/users.json")
+// let users = readFileSync(__dirname + "/users.json")
+// console.log(JSON.parse(users))
 
 const app = express();
 app.use(cors());
@@ -41,6 +42,8 @@ app.post("/users", async (req, res) => {
           const newUserList = JSON.stringify(userString, null, 2)
           console.log(newUserList)
           writeFileSync(__dirname + "/users.json", newUserList)
+          let userData = readFileSync(__dirname + "/users.json")
+          console.log(JSON.parse(userData))
           return res.status(201).send(newUser);
         } catch (error) {
           console.log('An error has occured', error)
@@ -63,10 +66,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
+    let users = readFileSync(__dirname + "/users.json")
     res.send(JSON.parse(users));
 });
 
 app.get("/users/:username", (req, res) => {
+    let users = readFileSync(__dirname + "/users.json")
     const username = req.params.username;
     const user = users.find(
         (user) => user.username.toLowerCase() === username.toLowerCase()
