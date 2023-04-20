@@ -21,7 +21,28 @@ fs.chmod("users.json", 0o775, (error) => {
       console.log(error);
       return;
     }
-  
+    
+    app.post("/users", (req, res) => {
+      const username = req.body.username;
+    
+      if (!username) {
+        res.status(400).send({ error: "Username is required!" });
+      } else {
+        const newUser = {
+          username: username,
+          score: {
+            music: req.body.score.music || 0,
+            geography: req.body.score.geography || 0,
+            literature: req.body.score.literature || 0,
+            history: req.body.score.history || 0,
+          },
+        };
+    
+        userString.push(newUser);
+        fs.writeFileSync("/users.json", JSON.stringify(userString, null, 2));
+        res.status(201).send(newUser);
+      }
+    });
     // do other stuff
     console.log("Permissions are changed for the file!");
   });
@@ -46,27 +67,6 @@ app.get("/users/:username", (req, res) => {
   }
 });
 
-app.post("/users", (req, res) => {
-  const username = req.body.username;
-
-  if (!username) {
-    res.status(400).send({ error: "Username is required!" });
-  } else {
-    const newUser = {
-      username: username,
-      score: {
-        music: req.body.score.music || 0,
-        geography: req.body.score.geography || 0,
-        literature: req.body.score.literature || 0,
-        history: req.body.score.history || 0,
-      },
-    };
-
-    userString.push(newUser);
-    fs.writeFileSync("/users.json", JSON.stringify(userString, null, 2));
-    res.status(201).send(newUser);
-  }
-});
 
 app.patch("/users/:username", (req, res) => {
   const username = req.params.username;
