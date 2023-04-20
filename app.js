@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(logger);
 
 const userData = fs.readFileSync("users.json");
+
 const userString = JSON.parse(userData);
 
 app.post("/users", (req, res) => {
@@ -32,7 +33,7 @@ app.post("/users", (req, res) => {
         };
 
         userString.push(newUser);
-        fs.writeFile("./users.json", JSON.stringify(userString, null, 2), (err) => {
+        fs.writeFile(__dirname + "/users.json", JSON.stringify(userString, null, 2), (err) => {
           if (err) {
             console.log(err)
             res.sendStatus(500)
