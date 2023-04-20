@@ -5,7 +5,7 @@ const quizes = require("./quiz.json");
 const fs = require("fs");
 const { readFileSync, writeFileSync } = require('fs')
 
-const users = require(__dirname + "/users.json");
+// const users = require(__dirname + "/users.json");
 
 const app = express();
 app.use(cors());
@@ -37,6 +37,7 @@ app.post("/users", async (req, res) => {
           userString.push(newUser);
           console.log(userString)
           const newUserList = JSON.stringify(userString, null, 2)
+          console.log(newUserList)
           writeFileSync(__dirname + "/users.json", newUserList)
           return res.status(201).send(newUser);
         } catch (error) {
@@ -59,8 +60,9 @@ app.get("/", (req, res) => {
     res.send("Topic availables are: Music, Geography, History and Literature");
 });
 
-app.get("/users", (req, res) => {
-    res.send(users);
+app.get("/users", async (req, res) => {
+    const userData = readFileSync(__dirname + "/users.json");
+    res.send(userData);
 });
 
 app.get("/users/:username", (req, res) => {
