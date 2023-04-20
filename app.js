@@ -32,8 +32,14 @@ app.post("/users", (req, res) => {
         };
 
         userString.push(newUser);
-        fs.writeFile("./users.json", JSON.stringify(userString, null, 2));
-        res.status(201).send(newUser);
+        fs.writeFile("./users.json", JSON.stringify(userString, null, 2), (err) => {
+          if (err) {
+            console.log(err)
+            res.sendStatus(500)
+          } else {
+            res.status(201).send(newUser);
+          }
+        });
     }
 
 });
