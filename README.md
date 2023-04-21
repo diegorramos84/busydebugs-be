@@ -19,7 +19,7 @@ To get access to the topic, you have to type the following statement in URL:
   - "topic" will be the topic you choose to access. E.g. Geography
   - https://brain-debug.onrender.com/quiz/geography
 
-This will tkae you to a page with a json file of all the questions/answers of the topic of choice.
+This will take you to a page with a JSON file of all the questions/answers of the topic of choice.
 Here are the links to all the topics we currently have:
 
 - [Geography](https://brain-debug.onrender.com/quiz/geography)
@@ -32,7 +32,7 @@ To get access to the users, you have to type the following statement in URL:
 
 - https://brain-debug.onrender.com/users
 
-This link will take you to a page with a json file of all the users that is stored in the API.
+This link will take you to a page with a JSON file of all the users that is stored in the API.
 
 ## known bugs/Issues
 
